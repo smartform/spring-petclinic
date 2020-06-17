@@ -1,4 +1,4 @@
 FROM anapsix/alpine-java
-LABEL maintainer="augustin@processdrive.com"
-COPY /target/scala-maven-1.0.0.jar /home/scala-maven-1.0.0.jar
-CMD ["java","-jar","/home/scala-maven-1.0.0.jar"]
+LABEL maintainer="shanem@liatrio.com"
+COPY /target/spring-petclinic-1.5.1.jar /home/spring-petclinic-1.5.1.jar
+CMD ["java","-jar","/home/spring-petclinic-1.5.1.jar"]
