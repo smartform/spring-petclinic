@@ -1,5 +1,10 @@
 #!groovy
 pipeline {
+    environment {
+        registry = "augustinlourdhu/my_first_test"
+        registryCredential = 'dockerhub'
+        dockerImage = ''
+    }
     agent none
    stages {     
       stage('Docker Build') {
@@ -8,13 +13,12 @@ pipeline {
                sh 'docker build -t shanem/spring-petclinic:latest .'
            }
        }
-       stage('Docker Push') {
-           agent any
+       stage('Deploy Image') {
            steps {
-               withCredentials([usernamePassword(credentialsId: 'dockerhub', passwordVariable: 'dockerHubPassword',
-                       usernameVariable: 'dockerHubUser')]) {
-                   sh "docker login -u ${env.dockerHubUser} -p ${env.dockerHubPassword}"
-                   sh 'docker push shanem/spring-petclinic:latest'
+               script {
+                   docker.withRegistry('', registryCredential) {
+                       dockerImage.push()
+                   }
                }
            }
        }
