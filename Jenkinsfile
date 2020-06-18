@@ -5,7 +5,7 @@ pipeline {
       stage('Docker Build') {
            agent any
           steps {
-               sh 'ls -la $(pwd) /target/spring-petclinic-1.5.1.jar'
+               sh 'ls -la $(pwd)/target/'
            }
        }
    }
