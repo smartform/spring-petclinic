@@ -4,8 +4,8 @@ pipeline {
    stages {     
       stage('Docker Build') {
            agent any
-          steps {
-               sh 'ls -la $(pwd)/target/'
+           steps {
+               sh 'docker build -t shanem/spring-petclinic:latest .'
            }
        }
    }
